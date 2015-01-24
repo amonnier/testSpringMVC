@@ -12,10 +12,22 @@
         <title>Accueil</title>
     </head>
     <body>
-        <ul class="nav nav-tabs">
-        <li role="presentation" class="active"><a href="<c:url value="/"/>">Home</a></li>
-        <li role="presentation"><a href="<c:url value="/welcome/print.do"/>">Print the hello !</a><spring:eval var="constant" expression="T(com.test.springmvc.springmvcproject.constants.MappingConstants).ACTION_REGISTER"/></li>
-        <li role="presentation"><a href="<c:url value="/index/register.do"/>">Register</a></li>
-        <li role="presentation"><a href="<c:url value="/index/invalidate.do"/>">Invalider la session</a></li>
-    </ul>
-   
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">     
+                <div class="navbar-header">
+
+                    <a class="navbar-brand" href="<c:url value='/'/>">Home</a>  
+                </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="<c:url value="/welcome/print.do"/>">Print the hello !</a><spring:eval var="constant" expression="T(com.test.springmvc.springmvcproject.constants.MappingConstants).ACTION_REGISTER"/></li>
+                            <li><a href="<c:url value="/index/register.do"/>">Register</a></li>
+                             <li><a href="<c:url value="/index/invalidate.do"/>">Invalider la session</a></li>
+
+                        </ul> 
+                    </div>
+                </div>
+           
+        </nav>
