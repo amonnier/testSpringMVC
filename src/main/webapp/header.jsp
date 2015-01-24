@@ -16,7 +16,7 @@
             <div class="container-fluid">     
                 <div class="navbar-header">
 
-                    <a class="navbar-brand" href="<c:url value='/'/>">Home</a>  
+                    <a class="navbar-brand" href="<c:url value='/'/>"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a>  
                 </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
