@@ -94,13 +94,13 @@ public class IndexController {
             return "register";
         }
 
-        return "";
+        return "redirect:/index.do";
     }
 
     @RequestMapping(value = "invalidate", method = RequestMethod.GET)
     public String invalidateSession(HttpSession session, ModelMap map) {
 
         session.invalidate();
-        return this.getIndex(map);
+        return "redirect:/index.do";
     }
 }

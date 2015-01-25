@@ -1,0 +1,15 @@
+/target/
+/hsqldb/bin/
+/hsqldb/integration/
+/hsqldb/doc-src/
+/hsqldb/sample/
+/hsqldb/readme.txt
+/hsqldb/build/
+/hsqldb/index.html
+/hsqldb/stylesheets/
+/hsqldb/src/
+/hsqldb/data/
+/hsqldb/doc/
+/hsqldb/testrun/
+/hsqldb/lib/hs_err_pid5444.log
+/hsqldb/lib/testSpringMvc.lck

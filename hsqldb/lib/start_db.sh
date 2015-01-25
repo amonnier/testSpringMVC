@@ -1,0 +1,1 @@
+java -cp hsqldb.jar org.hsqldb.server.Server -database.0 file:testSpringMvc -dbname.0 testSpringMvc

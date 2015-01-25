@@ -9,7 +9,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <!DOCTYPE html>
-<jsp:include page="header.jsp" />
+<jsp:include page="/header.jsp" />
 
         <form:form action="${pageContext.request.contextPath}/upload.do" 
                    commandName="bookBean" cssClass="pure-form pure-form-stacked" method="POST" 

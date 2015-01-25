@@ -10,23 +10,27 @@ import com.test.springmvc.springmvcproject.exceptions.DuplicatedEntryException;
 import com.test.springmvc.springmvcproject.exceptions.NoDataFoundException;
 import com.test.springmvc.springmvcproject.mapper.UtilisateurMapper;
 import javax.sql.DataSource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author guillaume
  */
-//@Service
+@Repository
 public class UtilisateurDAOImpl implements UtilisateurDAO {
 
+    
     private DataSource dataSource;
     private JdbcTemplate template;
 
-    public void setDataSource(DataSource ds) {
-        this.dataSource = ds;
-        this.template = new JdbcTemplate(ds);
+    @Autowired
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
+        this.template = new JdbcTemplate(dataSource);
     }
 
     public DataSource getDataSource() {

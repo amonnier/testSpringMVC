@@ -12,16 +12,16 @@ import com.test.springmvc.springmvcproject.dv.beans.BookBean;
 import com.test.springmvc.springmvcproject.exceptions.BookAlreadyExistsException;
 import com.test.springmvc.springmvcproject.helpers.UploadHelper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author guillaume
  */
-@Component
+@Service
 public class UploadServiceImpl implements UploadService{
     
-//    @Autowired
+    @Autowired
     private BookDAO bookDAO;
 
     public BookDAO getBookDAO() {
