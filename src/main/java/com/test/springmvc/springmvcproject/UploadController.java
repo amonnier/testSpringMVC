@@ -11,7 +11,9 @@ import com.test.springmvc.springmvcproject.exceptions.BookAlreadyExistsException
 import com.test.springmvc.springmvcproject.exceptions.NoDataFoundException;
 import com.test.springmvc.springmvcproject.services.UploadService;
 import com.test.springmvc.springmvcproject.services.UtilisateurService;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -33,7 +35,7 @@ public class UploadController {
 
     @Autowired
     private UploadService service;
-    
+
     @Autowired
     private UtilisateurService utilisateurService;
 
@@ -52,7 +54,6 @@ public class UploadController {
     public void setUtilisateurService(UtilisateurService utilisateurService) {
         this.utilisateurService = utilisateurService;
     }
-    
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String getInitial(HttpSession session, ModelMap model) {
@@ -72,27 +73,29 @@ public class UploadController {
         final String url_to_book = contextRoot + "/" + dossier_uploads
                 + "/" + bean.getAuteur() + "/";
         final String url_finale = url_to_book + "/" + bean.getFichier().getOriginalFilename();
-        System.out.println("url finale : " + url_finale);
+        System.out.println("url finale : " + url_to_book);
         //on ajoute l'emplacement final au bean book
         bean.setEmplacement(url_finale);
         final File f = new File(url_finale);
-
+        f.getParentFile().mkdirs();
         try {
 
-            if (f.mkdirs()) {
-                if (f.createNewFile()) {
+//            if (f.mkdirs()) {
+//                if (f.createNewFile()) {
                     bean.getFichier().transferTo(f);
-                }
-            }
+//                    try (BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(f))) {
+//                        stream.write(bean.getFichier().getBytes());
+//                    }
+//                }
+//            }
             //recuperation de l'utilisateur
             UtilisateurBean utilisateur = (UtilisateurBean) session.getAttribute("utilisateur");
             //si pas d'utilisateur, on recupere l'anonyme
-            if(null == utilisateur){
-                try{
-                    utilisateur = utilisateurService.get("anonyme");
-                }catch(NoDataFoundException e){
-                    result.addError(new FieldError("BookBean", "fichier"
-                            , "Une erreur interne est apparue."));
+            if (null == utilisateur) {
+                try {
+                    utilisateur = utilisateurService.get("anonyme@anonyme.com");
+                } catch (NoDataFoundException e) {
+                    result.addError(new FieldError("BookBean", "fichier", "Une erreur interne est apparue."));
                 }
             }
             //creation entree en base

@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @author guillaume
  */
 public class BookBean {
+
     @NotNull
     @NotEmpty
     private String auteur;
@@ -26,6 +27,7 @@ public class BookBean {
     private String description;
     private MultipartFile fichier;
     private String emplacement;
+    private Integer identifiant;
 
     public String getAuteur() {
         return auteur;
@@ -66,14 +68,22 @@ public class BookBean {
     public void setEmplacement(String emplacement) {
         this.emplacement = emplacement;
     }
-    
+
     @AssertTrue
-    public boolean hasFileUploaded(){
-        if(this.fichier==null){
+    public boolean hasFileUploaded() {
+        if (this.fichier == null) {
             return false;
         }
-        System.out.println("type de fichier : "+fichier.getContentType());
+        System.out.println("type de fichier : " + fichier.getContentType());
         return true;
     }
-    
+
+    public Integer getIdentifiant() {
+        return identifiant;
+    }
+
+    public void setIdentifiant(Integer identifiant) {
+        this.identifiant = identifiant;
+    }
+
 }

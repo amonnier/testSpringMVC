@@ -21,6 +21,7 @@ public class UploadHelper {
         boBean.setDescription(bean.getDescription());
         boBean.setTitre(bean.getTitre());
         boBean.setEmplacement(bean.getEmplacement());
+        boBean.setId(bean.getIdentifiant());
         
         return boBean;
     }

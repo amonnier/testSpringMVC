@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <html>
     <head>
         <link rel='stylesheet' href='${pageContext.request.contextPath}/webjars/bootstrap/3.3.2/css/bootstrap.min.css'>
@@ -22,12 +23,17 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="<c:url value="/welcome/print.do"/>">Print the hello !</a><spring:eval var="constant" expression="T(com.test.springmvc.springmvcproject.constants.MappingConstants).ACTION_REGISTER"/></li>
+                            <li class="active"><a href="<c:url value="/welcome/print.do"/>">Print the hello !</a></li>
                             <li><a href="<c:url value="/index/register.do"/>">Register</a></li>
-                             <li><a href="<c:url value="/index/invalidate.do"/>">Invalider la session</a></li>
-
+                            <li><a href="<c:url value="/index/invalidate.do"/>">Invalider la session</a></li>
+                            <li><a href="<c:url value="/upload.do"/>">Charger un livre</a></li>
+                            <li>
+                                <form action="${pageContext.request.contextPath}/search.do" method="POST">
+                                    <input type="text" name="recherche" id="recherche" path="recherche" placeholder="Titre du livre..."/>
+                                    <input type="submit" class="btn btn-default" value="Rechercher"/>
+                                </form>
+                            </li>
                         </ul> 
                     </div>
                 </div>
-           
         </nav>

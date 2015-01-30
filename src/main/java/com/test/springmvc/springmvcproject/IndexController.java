@@ -8,6 +8,7 @@ package com.test.springmvc.springmvcproject;
 import com.test.springmvc.springmvcproject.dv.beans.RegisterBean;
 import com.test.springmvc.springmvcproject.bo.bean.UtilisateurBean;
 import com.test.springmvc.springmvcproject.dv.beans.LoginBean;
+import com.test.springmvc.springmvcproject.dv.beans.SearchBean;
 import com.test.springmvc.springmvcproject.exceptions.DuplicatedEntryException;
 import com.test.springmvc.springmvcproject.exceptions.NoDataFoundException;
 import com.test.springmvc.springmvcproject.services.UtilisateurService;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -39,6 +41,11 @@ public class IndexController {
     public void setUtilisateurService(UtilisateurService utilisateurService) {
         this.utilisateurService = utilisateurService;
     }
+    
+//    @ModelAttribute("searchBean")
+//    public SearchBean initializeBean(){
+//        return new SearchBean();
+//    }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String connexion(@Valid LoginBean loginbean,

@@ -10,12 +10,21 @@ package com.test.springmvc.springmvcproject.bo.bean;
  * @author guillaume
  */
 public class BookBoBean {
+    private Integer id;
     private String auteur;
     private String titre;
     private String description;
     private String emplacement;
     private UtilisateurBean uploader;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
     public String getAuteur() {
         return auteur;
     }

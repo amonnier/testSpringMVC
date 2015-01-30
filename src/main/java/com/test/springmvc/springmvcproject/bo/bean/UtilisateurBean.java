@@ -13,6 +13,7 @@ import java.io.Serializable;
  */
 public class UtilisateurBean implements Serializable{
 
+    private Integer id;
     private String usertag;
     private String email;
     private String password;
@@ -25,6 +26,14 @@ public class UtilisateurBean implements Serializable{
         this.usertag = usertag;
         this.email = email;
         this.password = password;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getUsertag() {

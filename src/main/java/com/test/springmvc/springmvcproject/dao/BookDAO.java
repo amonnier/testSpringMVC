@@ -6,6 +6,7 @@
 package com.test.springmvc.springmvcproject.dao;
 
 import com.test.springmvc.springmvcproject.bo.bean.BookBoBean;
+import com.test.springmvc.springmvcproject.exceptions.NoDataFoundException;
 import java.util.List;
 
 /**
@@ -16,8 +17,10 @@ public interface BookDAO {
     
     public void create(BookBoBean bean);
     
-    public List<BookBoBean> getByTitre(final String titre);
+    public List<BookBoBean> getByTitreLike(final String titre) throws NoDataFoundException;
     
     public List<BookBoBean> getByAuteur(final String auteur);
+    
+    public BookBoBean getById(final Integer id) throws NoDataFoundException;
     
 }

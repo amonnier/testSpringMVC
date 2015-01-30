@@ -20,6 +20,7 @@ public class UtilisateurMapper implements RowMapper<UtilisateurBean>{
     public UtilisateurBean mapRow(ResultSet rs, int i) throws SQLException {
         final UtilisateurBean utilisateur = new UtilisateurBean();
         
+        utilisateur.setId(rs.getInt("id"));
         utilisateur.setUsertag(rs.getString("usertag"));
         utilisateur.setEmail(rs.getString("email"));
         utilisateur.setPassword(rs.getString("password"));
