@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <html>
     <head>
         <link rel='stylesheet' href='${pageContext.request.contextPath}/webjars/bootstrap/3.3.2/css/bootstrap.min.css'>
@@ -17,20 +18,20 @@
             <div class="container-fluid">     
                 <div class="navbar-header">
 
-                    <a class="navbar-brand" href="<c:url value='/'/>"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a>  
+                    <a class="navbar-brand" href="<c:url value='/'/>"><span class="glyphicon glyphicon-home" aria-hidden="true"></span><spring:message code="header.link.home"/></a>  
                 </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="<c:url value="/welcome/print.do"/>">Print the hello !</a></li>
-                            <li><a href="<c:url value="/index/register.do"/>">Register</a></li>
-                            <li><a href="<c:url value="/index/invalidate.do"/>">Invalider la session</a></li>
-                            <li><a href="<c:url value="/upload.do"/>">Charger un livre</a></li>
+                            <li class="active"><a href="<c:url value="/welcome/print.do"/>"><spring:message code="header.link.print.hello"/></a></li>
+                            <li><a href="<c:url value="/index/register.do"/>"><spring:message code="header.link.register"/></a></li>
+                            <li><a href="<c:url value="/index/invalidate.do"/>"><spring:message code="header.link.session.invalidate"/></a></li>
+                            <li><a href="<c:url value="/upload.do"/>"><spring:message code="header.link.upload"/></a></li>
                             <li>
                                 <form action="${pageContext.request.contextPath}/search.do" method="POST">
-                                    <input type="text" name="recherche" id="recherche" path="recherche" placeholder="Titre du livre..."/>
-                                    <input type="submit" class="btn btn-default" value="Rechercher"/>
+                                    <input type="text" name="recherche" id="recherche" path="recherche" placeholder="<spring:message code="header.search.placeholder"/>"/>
+                                    <input type="submit" class="btn btn-default" value="<spring:message code="header.search.submit"/>"/>
                                 </form>
                             </li>
                         </ul> 

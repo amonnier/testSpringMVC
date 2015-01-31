@@ -41,15 +41,17 @@ public class IndexController {
     public void setUtilisateurService(UtilisateurService utilisateurService) {
         this.utilisateurService = utilisateurService;
     }
-    
+
 //    @ModelAttribute("searchBean")
 //    public SearchBean initializeBean(){
 //        return new SearchBean();
 //    }
-
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String connexion(@Valid LoginBean loginbean,
             BindingResult result, HttpSession session, ModelMap model) {
+        if (result.hasErrors()) {
+            return "index";
+        }
         try {
             final UtilisateurBean utilisateur = utilisateurService.get(loginbean);
             if (utilisateur != null) {
@@ -57,7 +59,7 @@ public class IndexController {
                 session.setAttribute("utilisateur", utilisateur);
                 return "index";
             } else {
-                throw new NoDataFoundException("Utilisateur non trouvé !");
+                throw new NoDataFoundException("connexion.utilisateur.non.trouve");
             }
         } catch (NoDataFoundException e) {
             result.addError(new FieldError("LoginBean", "email", e.getMessage()));

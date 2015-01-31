@@ -14,11 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 
 /**
  *
@@ -49,13 +47,11 @@ public class SearchController {
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String getResult(@ModelAttribute("searchBean") SearchBean bean, ModelMap map) {
-        System.out.println("It works !");
-        System.out.println("recherche : " + bean.getRecherche());
         List<BookBean> resultat;
         try {
-           resultat = searchService.findByTitleLike(bean.getRecherche());
-           bean.setResultat(resultat);
-        }catch(NoDataFoundException e){
+            resultat = searchService.findByTitleLike(bean.getRecherche());
+            bean.setResultat(resultat);
+        } catch (NoDataFoundException e) {
             return "";
         }
         return "results";

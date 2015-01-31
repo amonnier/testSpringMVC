@@ -16,7 +16,8 @@
     </div>
 </c:if>
 
-<div class="page-header"><h1>INDEX !</h1>
+<div class="page-header">
+    <h1><spring:message code="accueil.index.message"/></h1>
     <c:if test="${empty utilisateur}">
         <form:form commandName="loginBean" 
                    action="${pageContext.request.contextPath}/index.do" method="POST" class="form-inline">
@@ -26,15 +27,16 @@
             </div>
 
             <div class="form-group">
-                <label>Email : <form:input path="email"/></label>
+                <label><spring:message code="accueil.login.email"/><form:input path="email"/></label>
             </div>
             <div class="form-group">
-                <label>Password : <form:password path="password"/></label></div>
-            <input type="submit" class="btn btn-info btn-lg" value="Envoyer"/>
+                <label><spring:message code="accueil.login.password"/><form:password path="password"/></label></div>
+            <input type="submit" class="btn btn-info btn-lg" 
+                   value="<spring:message code="accueil.login.submit"/>"/>
         </form:form>
     </c:if>
     <c:if test="${not empty utilisateur}">
-        <h4> Bienvenue ${utilisateur.usertag} !</h4>
+        <h4> <spring:message code="accueil.accueil.bienvenue.message"/> ${utilisateur.usertag} !</h4>
     </c:if>
 </div>
 

@@ -46,10 +46,11 @@ public class BookDetailsController {
         
         try {
             bean = searchService.findById(bookId);
+            map.addAttribute("bookModel", bean);
         }catch(NoDataFoundException e){
-            return "redirect:/index";
+            return "redirect:/index.do";
         }
         
-        return "results";
+        return "bookDetails";
     }
 }
