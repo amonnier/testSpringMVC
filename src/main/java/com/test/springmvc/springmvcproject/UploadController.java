@@ -77,17 +77,12 @@ public class UploadController {
         //on ajoute l'emplacement final au bean book
         bean.setEmplacement(url_finale);
         final File f = new File(url_finale);
-        f.getParentFile().mkdirs();
         try {
+            
+            f.getParentFile().mkdirs();
 
-//            if (f.mkdirs()) {
-//                if (f.createNewFile()) {
-                    bean.getFichier().transferTo(f);
-//                    try (BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(f))) {
-//                        stream.write(bean.getFichier().getBytes());
-//                    }
-//                }
-//            }
+            bean.getFichier().transferTo(f);
+
             //recuperation de l'utilisateur
             UtilisateurBean utilisateur = (UtilisateurBean) session.getAttribute("utilisateur");
             //si pas d'utilisateur, on recupere l'anonyme

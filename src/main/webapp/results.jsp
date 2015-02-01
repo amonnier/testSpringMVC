@@ -10,15 +10,18 @@
     <spring:message code="resultat.vide"/>
 </c:if>
 <c:if test="${not empty searchBean.resultat}">
-    
+
     <h2 class="text-center">Résultats</h2>
-    <table class="table table-hover"><tr><td>Nom<td><td>Auteur</td></tr>
+    <div class="table-responsive">
+        
+    <table data-link="row" class="table table-hover"><tr><td>Nom</td><td>Auteur</td></tr>
         <c:forEach items="${searchBean.resultat}" var="resultat">
-            <tr><td> <a href="${pageContext.request.contextPath}/book/${resultat.identifiant}/show.do">${resultat.titre}</a><td><tr>
+            <tr onclick="window.document.location='${pageContext.request.contextPath}/book/${resultat.identifiant}/show.do';"> <td>${resultat.titre}</td>
+        <td>${resultat.auteur}</td></tr>
                 </c:forEach>
     </table>
-    
-    
+    </div>
+
 </c:if>
 </body>
 </html>
