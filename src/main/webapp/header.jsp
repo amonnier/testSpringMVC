@@ -18,23 +18,29 @@
             <div class="container-fluid">     
                 <div class="navbar-header">
 
-                    <a class="navbar-brand" href="<c:url value='/'/>"><span class="glyphicon glyphicon-home" aria-hidden="true"></span><spring:message code="header.link.home"/></a>  
+                    <a class="navbar-brand" href="<c:url value='/'/>"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> <spring:message code="header.link.home"/></a>  
                 </div>
 
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav">
-                            <li class="active"><a href="<c:url value="/welcome/print.do"/>"><spring:message code="header.link.print.hello"/></a></li>
-                            <li><a href="<c:url value="/index/register.do"/>"><spring:message code="header.link.register"/></a></li>
-                            <li><a href="<c:url value="/index/invalidate.do"/>"><spring:message code="header.link.session.invalidate"/></a></li>
-                            <li><a href="<c:url value="/upload.do"/>"><spring:message code="header.link.upload"/></a></li>
-                            <li>
-                                <form action="${pageContext.request.contextPath}/search.do" method="POST">
-                                    <input type="text" name="recherche" id="recherche" path="recherche" placeholder="<spring:message code="header.search.placeholder"/>"/>
-                                    <input type="submit" class="btn btn-default" value="<spring:message code="header.search.submit"/>"/>
-                                </form>
-                            </li>
-                        </ul> 
-                    </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="<c:url value="/welcome/print.do"/>"><spring:message code="header.link.print.hello"/></a></li>
+                        <li><a href="<c:url value="/index/register.do"/>"><spring:message code="header.link.register"/></a></li>
+                        <li><a href="<c:url value="/index/invalidate.do"/>"><spring:message code="header.link.session.invalidate"/></a></li>
+                        <li><a href="<c:url value="/upload.do"/>"><spring:message code="header.link.upload"/></a></li>
+                        <li>
+                            <form class="navbar-form navbar-left input-group" role="search" action="${pageContext.request.contextPath}/search.do" method="POST">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="recherche" id="recherche" path="recherche" placeholder="<spring:message code="header.search.placeholder"/>"/>
+                                </div>
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-default "  ><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                                </span>
+                            </form>
+
+
+                        </li>
+                    </ul> 
                 </div>
+            </div>
         </nav>

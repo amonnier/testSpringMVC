@@ -10,9 +10,15 @@
     <spring:message code="resultat.vide"/>
 </c:if>
 <c:if test="${not empty searchBean.resultat}">
-    <c:forEach items="${searchBean.resultat}" var="resultat">
-        <a href="${pageContext.request.contextPath}/book/${resultat.identifiant}/show.do">${resultat.titre}</a>
-    </c:forEach>
+    
+    <h2 class="text-center">Résultats</h2>
+    <table class="table table-hover"><tr><td>Nom<td><td>Auteur</td></tr>
+        <c:forEach items="${searchBean.resultat}" var="resultat">
+            <tr><td> <a href="${pageContext.request.contextPath}/book/${resultat.identifiant}/show.do">${resultat.titre}</a><td><tr>
+                </c:forEach>
+    </table>
+    
+    
 </c:if>
 </body>
 </html>

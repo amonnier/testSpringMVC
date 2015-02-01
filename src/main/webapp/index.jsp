@@ -38,6 +38,8 @@
     <c:if test="${not empty utilisateur}">
         <h4> <spring:message code="accueil.accueil.bienvenue.message"/> ${utilisateur.usertag} !</h4>
     </c:if>
+
+
 </div>
 
 </body>
