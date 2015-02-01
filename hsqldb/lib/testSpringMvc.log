@@ -26,3 +26,34 @@ DISCONNECT
 DISCONNECT
 /*C17*/SET SCHEMA PUBLIC
 DISCONNECT
+/*C18*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C19*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C20*/SET SCHEMA PUBLIC
+INSERT INTO LIVRE VALUES(15,2,'Ticape la fleur','ticape','Les aventures de Ticape la fleur qui se transforme en coccinelle !','/home/guillaume/NetBeansProjects/testSpringMvc/target/SpringMvcProject-1.0-SNAPSHOT/uploads/ticape//The Binding of Isaac Rebirth.desktop')
+COMMIT
+DISCONNECT
+/*C21*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C22*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C23*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C24*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C25*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C26*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C27*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C28*/SET SCHEMA PUBLIC
+INSERT INTO LIVRE VALUES(16,2,'ticape le fleuru','ticape2','test','/home/guillaume/NetBeansProjects/testSpringMvc/target/SpringMvcProject-1.0-SNAPSHOT/uploads/ticape2//')
+COMMIT
+DISCONNECT
+/*C29*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C7*/SET SCHEMA PUBLIC
+alter table livre alter column emplacement varchar(10000)
+alter table livre alter column description varchar(10000)
