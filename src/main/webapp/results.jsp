@@ -5,9 +5,14 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <jsp:include page="header.jsp" />
-        
-<c:forEach items="${searchBean.resultat}" var="resultat">
-    <a href="${pageContext.request.contextPath}/book/${resultat.identifiant}/show.do">${resultat.titre}</a>
-</c:forEach>
-    </body>
+
+<c:if test="${empty searchBean.resultat}">
+    <spring:message code="resultat.vide"/>
+</c:if>
+<c:if test="${not empty searchBean.resultat}">
+    <c:forEach items="${searchBean.resultat}" var="resultat">
+        <a href="${pageContext.request.contextPath}/book/${resultat.identifiant}/show.do">${resultat.titre}</a>
+    </c:forEach>
+</c:if>
+</body>
 </html>
