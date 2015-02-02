@@ -23,6 +23,7 @@ public class BookMapper implements RowMapper<BookBoBean>{
         bean.setDescription(rs.getString("description"));
         bean.setTitre(rs.getString("titre"));
         bean.setEmplacement(rs.getString("emplacement"));
+        bean.setEmplacementCouverture(rs.getString("emplacement_couverture"));
         bean.setId(rs.getInt("id"));
         
         final UtilisateurBean uploader = new UtilisateurBean();

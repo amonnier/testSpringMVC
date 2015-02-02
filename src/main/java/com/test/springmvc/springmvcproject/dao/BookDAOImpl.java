@@ -34,15 +34,15 @@ public class BookDAOImpl extends JdbcDaoSupport implements BookDAO {
 
     @Override
     public void create(BookBoBean bean) {
-        System.out.println(bean.getTitre() + ", " + getJdbcTemplate().getClass());
-        final String query = " insert into livre(uploader, titre, auteur,description, emplacement) "
-                + "values (?,?,?,?,?)";
+        final String query = " insert into livre(uploader, titre, auteur,description, emplacement,emplacement_couverture) "
+                + "values (?,?,?,?,?,?)";
 
         getJdbcTemplate().update(query,
                 bean.getUploader().getId(), bean.getTitre(),
                 bean.getAuteur(),
                 bean.getDescription(),
-                bean.getEmplacement());
+                bean.getEmplacement(),
+                bean.getEmplacementCouverture());
     }
 
     @Override
@@ -55,7 +55,7 @@ public class BookDAOImpl extends JdbcDaoSupport implements BookDAO {
                 + "from livre "
                 + "join utilisateur "
                 + "on utilisateur.id = livre.uploader "
-                + "where livre.titre like ?";
+                + "where UPPER(livre.titre) like UPPER(?)";
         List<BookBoBean> listeLivres = null;
 
         final String titreAvecPcents = "%" + titre + "%";

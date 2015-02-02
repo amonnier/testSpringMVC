@@ -23,6 +23,7 @@ public class SearchHelper {
         bean.setDescription(bobean.getDescription());
         bean.setAuteur(bobean.getAuteur());
         bean.setEmplacement(bobean.getEmplacement());
+        bean.setEmplacementCouverture(bobean.getEmplacementCouverture());
         bean.setIdentifiant(bobean.getId());
         
         return bean;

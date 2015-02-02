@@ -71,17 +71,18 @@ public class UploadController {
         final String contextRoot = request.getServletContext().getRealPath("");
         final String dossier_uploads = "uploads";
         final String url_to_book = contextRoot + "/" + dossier_uploads
-                + "/" + bean.getAuteur() + "/";
-        final String url_finale = url_to_book + "/" + bean.getFichier().getOriginalFilename();
-        System.out.println("url finale : " + url_to_book);
+                + "/" + bean.getAuteur();
+        final String url_finale_livre = url_to_book + "/" + bean.getFichier().getOriginalFilename();
+        final String url_finale_couverture = url_to_book+ "/" + bean.getCouverture().getOriginalFilename();
         //on ajoute l'emplacement final au bean book
-        bean.setEmplacement(url_finale);
-        final File f = new File(url_finale);
+        bean.setEmplacement(url_finale_livre);
+        bean.setEmplacementCouverture(url_finale_couverture);
+        final File livre = new File(url_finale_livre);
+        final File couverture = new File(url_finale_couverture);
         try {
-            
-            f.getParentFile().mkdirs();
-
-            bean.getFichier().transferTo(f);
+            livre.getParentFile().mkdirs();
+            bean.getFichier().transferTo(livre);
+            bean.getCouverture().transferTo(couverture);
 
             //recuperation de l'utilisateur
             UtilisateurBean utilisateur = (UtilisateurBean) session.getAttribute("utilisateur");

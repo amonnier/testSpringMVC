@@ -10,11 +10,13 @@ package com.test.springmvc.springmvcproject.bo.bean;
  * @author guillaume
  */
 public class BookBoBean {
+
     private Integer id;
     private String auteur;
     private String titre;
     private String description;
     private String emplacement;
+    private String emplacementCouverture;
     private UtilisateurBean uploader;
 
     public Integer getId() {
@@ -24,7 +26,15 @@ public class BookBoBean {
     public void setId(Integer id) {
         this.id = id;
     }
-    
+
+    public String getEmplacementCouverture() {
+        return emplacementCouverture;
+    }
+
+    public void setEmplacementCouverture(String emplacementCouverture) {
+        this.emplacementCouverture = emplacementCouverture;
+    }
+
     public String getAuteur() {
         return auteur;
     }
@@ -64,5 +74,5 @@ public class BookBoBean {
     public void setUploader(UtilisateurBean uploader) {
         this.uploader = uploader;
     }
-    
+
 }

@@ -26,7 +26,9 @@ public class BookBean {
     @NotEmpty
     private String description;
     private MultipartFile fichier;
+    private MultipartFile couverture;
     private String emplacement;
+    private String emplacementCouverture;
     private Integer identifiant;
 
     public String getAuteur() {
@@ -35,6 +37,14 @@ public class BookBean {
 
     public void setAuteur(String auteur) {
         this.auteur = auteur;
+    }
+
+    public MultipartFile getCouverture() {
+        return couverture;
+    }
+
+    public void setCouverture(MultipartFile couverture) {
+        this.couverture = couverture;
     }
 
     public String getTitre() {
@@ -69,21 +79,30 @@ public class BookBean {
         this.emplacement = emplacement;
     }
 
-    @AssertTrue
-    public boolean hasFileUploaded() {
-        if (this.fichier == null) {
-            return false;
-        }
-        System.out.println("type de fichier : " + fichier.getContentType());
-        return true;
-    }
-
     public Integer getIdentifiant() {
         return identifiant;
     }
 
     public void setIdentifiant(Integer identifiant) {
         this.identifiant = identifiant;
+    }
+
+    public String getEmplacementCouverture() {
+        return emplacementCouverture;
+    }
+
+    public void setEmplacementCouverture(String emplacementCouverture) {
+        this.emplacementCouverture = emplacementCouverture;
+    }
+    
+    @AssertTrue(message = "Fichier chargé invalide.")
+    public boolean hasFileUploaded() {
+        if (this.fichier.isEmpty() || this.couverture.isEmpty()) {
+            return false;
+        }
+
+        System.out.println("type de fichier : " + fichier.getContentType());
+        return true;
     }
 
 }

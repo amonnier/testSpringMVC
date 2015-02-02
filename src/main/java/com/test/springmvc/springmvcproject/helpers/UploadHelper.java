@@ -13,16 +13,17 @@ import com.test.springmvc.springmvcproject.dv.beans.BookBean;
  * @author guillaume
  */
 public class UploadHelper {
-    
-    public static BookBoBean mapBookBeanToBookBoBean(final BookBean bean){
+
+    public static BookBoBean mapBookBeanToBookBoBean(final BookBean bean) {
         final BookBoBean boBean = new BookBoBean();
-        
+
         boBean.setAuteur(bean.getAuteur());
         boBean.setDescription(bean.getDescription());
         boBean.setTitre(bean.getTitre());
         boBean.setEmplacement(bean.getEmplacement());
+        boBean.setEmplacementCouverture(bean.getEmplacementCouverture());
         boBean.setId(bean.getIdentifiant());
-        
+
         return boBean;
     }
 }

@@ -21,6 +21,7 @@
             <label>Titre du livre : <form:input path="titre"/></label>
             <label>Auteur du livre : <form:input path="auteur"/></label>
             <label>Description : <form:textarea path="description"/></label>
+            <label>Couverture : <input type="file" name="couverture" id="couverture"/></label>
             <label>Emplacement : <input type="file" name="fichier" id="fichier"/></label>
             <input type="submit" value="Enregistrer"/>
         </form:form>
