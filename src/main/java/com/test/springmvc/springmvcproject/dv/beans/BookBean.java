@@ -97,7 +97,7 @@ public class BookBean {
     
     @AssertTrue(message = "Fichier chargé invalide.")
     public boolean hasFileUploaded() {
-        if (this.fichier.isEmpty() || this.couverture.isEmpty()) {
+        if (this.fichier.isEmpty()) {
             return false;
         }
 

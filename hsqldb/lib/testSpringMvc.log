@@ -1,22 +1,4 @@
-/*C2*/SET SCHEMA PUBLIC
-alter table livre add column emplacement_couverture varchar(10000)
-/*C3*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C4*/SET SCHEMA PUBLIC
-INSERT INTO LIVRE VALUES(40,2,'test','test','test couverture','/home/guillaume/NetBeansProjects/testSpringMvc/target/SpringMvcProject-1.0-SNAPSHOT/uploads/test//uninstall.sh',NULL)
-COMMIT
-DISCONNECT
-/*C5*/SET SCHEMA PUBLIC
-DISCONNECT
-/*C6*/SET SCHEMA PUBLIC
-INSERT INTO LIVRE VALUES(41,2,'test debug','test debug','test debug','/home/guillaume/NetBeansProjects/testSpringMvc/target/SpringMvcProject-1.0-SNAPSHOT/uploads/test debug//uninstall.sh',NULL)
-COMMIT
-DISCONNECT
-/*C7*/SET SCHEMA PUBLIC
-DISCONNECT
 /*C8*/SET SCHEMA PUBLIC
-INSERT INTO LIVRE VALUES(42,2,'ticape','ticape','ticape','/home/guillaume/NetBeansProjects/testSpringMvc/target/SpringMvcProject-1.0-SNAPSHOT/uploads/ticape/uninstall.sh','/home/guillaume/NetBeansProjects/testSpringMvc/target/SpringMvcProject-1.0-SNAPSHOT/uploads/ticape/README.txt')
-COMMIT
 DISCONNECT
 /*C9*/SET SCHEMA PUBLIC
 DISCONNECT
@@ -25,4 +7,38 @@ DISCONNECT
 /*C11*/SET SCHEMA PUBLIC
 DISCONNECT
 /*C12*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C13*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C14*/SET SCHEMA PUBLIC
+INSERT INTO LIVRE VALUES(47,2,'test url  ','test','test','/springMvcProject/uploads/README.txt','/springMvcProject/uploads/image.jpg')
+COMMIT
+DISCONNECT
+/*C15*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C16*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C17*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C18*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C19*/SET SCHEMA PUBLIC
+INSERT INTO LIVRE VALUES(48,2,'un test','test23','une description de tests','/springMvcProject/uploads/test23/Minecraft.jar','/springMvcProject/uploads/test23/image.jpg')
+COMMIT
+DISCONNECT
+/*C20*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C21*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C22*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C23*/SET SCHEMA PUBLIC
+INSERT INTO LIVRE VALUES(49,2,'test cou','couverrtur','blablah powow','/springMvcProject/uploads/couverrtur/Minecraft.jar','/springMvcProject/images/default.png')
+COMMIT
+DISCONNECT
+/*C25*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C26*/SET SCHEMA PUBLIC
+DISCONNECT
+/*C27*/SET SCHEMA PUBLIC
 DISCONNECT

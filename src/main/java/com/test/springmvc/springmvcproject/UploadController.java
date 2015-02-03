@@ -11,9 +11,7 @@ import com.test.springmvc.springmvcproject.exceptions.BookAlreadyExistsException
 import com.test.springmvc.springmvcproject.exceptions.NoDataFoundException;
 import com.test.springmvc.springmvcproject.services.UploadService;
 import com.test.springmvc.springmvcproject.services.UtilisateurService;
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -65,24 +63,46 @@ public class UploadController {
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String addNewBook(final javax.servlet.http.HttpServletRequest request, @Valid BookBean bean, BindingResult result,
             ModelMap map, final HttpSession session) {
+        //si erreur, on renvoie direct sur la page
         if (result.hasErrors()) {
             return "upload/newBook";
         }
         final String contextRoot = request.getServletContext().getRealPath("");
+        final String contextPath = request.getContextPath();
         final String dossier_uploads = "uploads";
+        final String dossier_default = "images";
+        final String image_default = "default.png";
+
+        final String uri_couverture_default = contextPath
+                + "/" + dossier_default + "/" + image_default;
+        //creation url totale pour la sauvegarde physique
         final String url_to_book = contextRoot + "/" + dossier_uploads
                 + "/" + bean.getAuteur();
+        //creation url relative pour sauvegarder l'emplacement des donnees
+        final String uri_to_book = contextPath + "/" + dossier_uploads
+                + "/" + bean.getAuteur();
+
         final String url_finale_livre = url_to_book + "/" + bean.getFichier().getOriginalFilename();
-        final String url_finale_couverture = url_to_book+ "/" + bean.getCouverture().getOriginalFilename();
+        final String url_relative_livre = uri_to_book + "/" + bean.getFichier().getOriginalFilename();
         //on ajoute l'emplacement final au bean book
-        bean.setEmplacement(url_finale_livre);
-        bean.setEmplacementCouverture(url_finale_couverture);
+        bean.setEmplacement(url_relative_livre);
+
+        if (!bean.getCouverture().isEmpty()) {
+            final String url_relative_couverture = uri_to_book + "/" + bean.getCouverture().getOriginalFilename();
+            bean.setEmplacementCouverture(url_relative_couverture);
+        } else {
+            bean.setEmplacementCouverture(uri_couverture_default);
+        }
+        final String url_finale_couverture = url_to_book + "/" + bean.getCouverture().getOriginalFilename();
+
         final File livre = new File(url_finale_livre);
         final File couverture = new File(url_finale_couverture);
         try {
             livre.getParentFile().mkdirs();
             bean.getFichier().transferTo(livre);
-            bean.getCouverture().transferTo(couverture);
+            if (!bean.getCouverture().isEmpty()) {
+                bean.getCouverture().transferTo(couverture);
+            }
 
             //recuperation de l'utilisateur
             UtilisateurBean utilisateur = (UtilisateurBean) session.getAttribute("utilisateur");

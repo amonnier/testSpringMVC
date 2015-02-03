@@ -10,7 +10,7 @@
 
 <jsp:include page="header.jsp" />
 <h4><spring:message code="book.details.message"/> ${bookModel.auteur}</h4>      
-
+<img src="${bookModel.emplacementCouverture}"/>
 <table>
     <tr>
         <td><spring:message code="book.details.titre"/></td>
