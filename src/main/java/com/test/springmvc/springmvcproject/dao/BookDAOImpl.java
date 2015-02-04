@@ -34,15 +34,16 @@ public class BookDAOImpl extends JdbcDaoSupport implements BookDAO {
 
     @Override
     public void create(BookBoBean bean) {
-        final String query = " insert into livre(uploader, titre, auteur,description, emplacement,emplacement_couverture) "
-                + "values (?,?,?,?,?,?)";
+        final String query = " insert into livre(uploader, titre, auteur,description, emplacement,emplacement_couverture,nom_fichier) "
+                + "values (?,?,?,?,?,?,?)";
 
         getJdbcTemplate().update(query,
                 bean.getUploader().getId(), bean.getTitre(),
                 bean.getAuteur(),
                 bean.getDescription(),
                 bean.getEmplacement(),
-                bean.getEmplacementCouverture());
+                bean.getEmplacementCouverture(),
+                bean.getNomFichier());
     }
 
     @Override

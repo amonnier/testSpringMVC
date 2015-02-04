@@ -23,6 +23,7 @@ public class UploadHelper {
         boBean.setEmplacement(bean.getEmplacement());
         boBean.setEmplacementCouverture(bean.getEmplacementCouverture());
         boBean.setId(bean.getIdentifiant());
+        boBean.setNomFichier(bean.getNomLivre());
 
         return boBean;
     }

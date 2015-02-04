@@ -18,6 +18,7 @@ public class BookBoBean {
     private String emplacement;
     private String emplacementCouverture;
     private UtilisateurBean uploader;
+    private String nomFichier;
 
     public Integer getId() {
         return id;
@@ -73,6 +74,14 @@ public class BookBoBean {
 
     public void setUploader(UtilisateurBean uploader) {
         this.uploader = uploader;
+    }
+
+    public String getNomFichier() {
+        return nomFichier;
+    }
+
+    public void setNomFichier(String nomFichier) {
+        this.nomFichier = nomFichier;
     }
 
 }

@@ -26,7 +26,8 @@
     </tr>
     <tr>
         <td><spring:message code="book.details.telecharger"/></td>
-        <td colspan="2"><input type="button" value="<spring:message code="book.details.button.telecharger"/>"</td>
+        <td colspan="2">
+            <a href="${pageContext.request.contextPath}/book/${bookModel.identifiant}/get.do"><input type="button" value="<spring:message code="book.details.button.telecharger"/>"/></a></td>
     </tr>
 </table>
 </body>

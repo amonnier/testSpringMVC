@@ -86,6 +86,8 @@ public class UploadController {
         final String url_relative_livre = uri_to_book + "/" + bean.getFichier().getOriginalFilename();
         //on ajoute l'emplacement final au bean book
         bean.setEmplacement(url_relative_livre);
+        //on ajoute le nom du fichier au bean
+        bean.setNomLivre(bean.getFichier().getOriginalFilename());
 
         if (!bean.getCouverture().isEmpty()) {
             final String url_relative_couverture = uri_to_book + "/" + bean.getCouverture().getOriginalFilename();

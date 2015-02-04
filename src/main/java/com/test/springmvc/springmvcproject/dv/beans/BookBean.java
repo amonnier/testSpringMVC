@@ -30,6 +30,7 @@ public class BookBean {
     private String emplacement;
     private String emplacementCouverture;
     private Integer identifiant;
+    private String nomLivre;
 
     public String getAuteur() {
         return auteur;
@@ -93,6 +94,14 @@ public class BookBean {
 
     public void setEmplacementCouverture(String emplacementCouverture) {
         this.emplacementCouverture = emplacementCouverture;
+    }
+
+    public String getNomLivre() {
+        return nomLivre;
+    }
+
+    public void setNomLivre(String nomLivre) {
+        this.nomLivre = nomLivre;
     }
     
     @AssertTrue(message = "Fichier chargé invalide.")
