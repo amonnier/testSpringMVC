@@ -17,5 +17,6 @@ public interface SearchService {
     
     public List<BookBean> findByTitleLike(final String title) throws NoDataFoundException;
     public BookBean findById(final Integer id) throws NoDataFoundException;
+    public List<BookBean> findLastFiveUploaded() throws NoDataFoundException;
     
 }

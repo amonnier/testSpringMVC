@@ -10,6 +10,7 @@ import com.test.springmvc.springmvcproject.dao.BookDAO;
 import com.test.springmvc.springmvcproject.dv.beans.BookBean;
 import com.test.springmvc.springmvcproject.exceptions.NoDataFoundException;
 import com.test.springmvc.springmvcproject.helpers.SearchHelper;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,6 +47,16 @@ public class SearchServiceImpl implements SearchService{
         
         final BookBean bean = SearchHelper.mapBookBoBeanToBookBean(bobean);
         return bean;
+    }
+    
+    @Override
+    public List<BookBean> findLastFiveUploaded() throws NoDataFoundException{
+        final List<BookBoBean> listFiveLastBoBooks = bookDAO.getLastFiveUploadedBooks();
+        final List<BookBean> listFiveLastBooks;
+        
+        listFiveLastBooks = SearchHelper.mapListBookBoBeanToBookBean(listFiveLastBoBooks);
+        
+        return listFiveLastBooks;
     }
 
 }

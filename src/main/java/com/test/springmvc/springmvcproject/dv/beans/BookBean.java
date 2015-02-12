@@ -5,6 +5,7 @@
  */
 package com.test.springmvc.springmvcproject.dv.beans;
 
+import com.test.springmvc.springmvcproject.constants.ApplicationConstants;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -103,13 +104,16 @@ public class BookBean {
     public void setNomLivre(String nomLivre) {
         this.nomLivre = nomLivre;
     }
-    
+
     @AssertTrue(message = "Fichier chargé invalide.")
     public boolean hasFileUploaded() {
         if (this.fichier.isEmpty()) {
             return false;
         }
-
+        if (!(this.fichier.getContentType().equals(ApplicationConstants.TYPE_EPUB)
+                || this.getFichier().getContentType().equals(ApplicationConstants.TYPE_PDF))) {
+            return false;
+        }
         System.out.println("type de fichier : " + fichier.getContentType());
         return true;
     }

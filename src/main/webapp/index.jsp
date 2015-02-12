@@ -21,11 +21,11 @@
     <c:if test="${empty utilisateur}">
         <form:form commandName="loginBean" 
                    action="${pageContext.request.contextPath}/index.do" method="POST" class="form-inline">
-
-            <div class="alert alert-danger" role="alert">
-                <form:errors path="*"/>
-            </div>
-
+            <form:errors path="*">
+                <div class="alert alert-danger" role="alert">
+                    <form:errors path="*"/>
+                </div>
+            </form:errors>
             <div class="form-group">
                 <label><spring:message code="accueil.login.email"/><form:input path="email"/></label>
             </div>
@@ -38,9 +38,16 @@
     <c:if test="${not empty utilisateur}">
         <h4> <spring:message code="accueil.accueil.bienvenue.message"/> ${utilisateur.usertag} !</h4>
     </c:if>
-
-
 </div>
-
+<div>
+    <spring:message code="accueil.derniers.livres"/>
+    <ul>
+        <c:if test="${not empty List5lasts}">
+            <c:forEach items="${List5lasts}" var="livre">
+                <li>${livre.titre}</li>
+                </c:forEach>
+            </c:if>
+    </ul>
+</div>
 </body>
 </html>

@@ -8,6 +8,7 @@ package com.test.springmvc.springmvcproject.dao;
 import com.test.springmvc.springmvcproject.bo.bean.BookBoBean;
 import com.test.springmvc.springmvcproject.exceptions.NoDataFoundException;
 import com.test.springmvc.springmvcproject.mapper.BookMapper;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
@@ -93,6 +94,18 @@ public class BookDAOImpl extends JdbcDaoSupport implements BookDAO {
         }
         
         return bobean;
+    }
+    
+    @Override
+    public List<BookBoBean> getLastFiveUploadedBooks() throws NoDataFoundException{
+        List<BookBoBean> listeLivres = new ArrayList<BookBoBean>();
+        final String sql = "select * from livre,utilisateur where utilisateur.id = livre.uploader order by id desc limit 5";
+        try{
+            listeLivres = getJdbcTemplate().query(sql, new BookMapper());
+        }catch(EmptyResultDataAccessException e){
+            throw new NoDataFoundException("erreurs.aucun.livre");
+        }
+        return listeLivres;
     }
 
 }

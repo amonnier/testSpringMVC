@@ -7,11 +7,14 @@ package com.test.springmvc.springmvcproject;
 
 import com.test.springmvc.springmvcproject.dv.beans.RegisterBean;
 import com.test.springmvc.springmvcproject.bo.bean.UtilisateurBean;
+import com.test.springmvc.springmvcproject.dv.beans.BookBean;
 import com.test.springmvc.springmvcproject.dv.beans.LoginBean;
-import com.test.springmvc.springmvcproject.dv.beans.SearchBean;
 import com.test.springmvc.springmvcproject.exceptions.DuplicatedEntryException;
 import com.test.springmvc.springmvcproject.exceptions.NoDataFoundException;
+import com.test.springmvc.springmvcproject.services.SearchService;
 import com.test.springmvc.springmvcproject.services.UtilisateurService;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +37,9 @@ public class IndexController {
     @Autowired
     private UtilisateurService utilisateurService;
 
+    @Autowired
+    private SearchService searchService;
+
     public UtilisateurService getUtilisateurService() {
         return utilisateurService;
     }
@@ -42,10 +48,26 @@ public class IndexController {
         this.utilisateurService = utilisateurService;
     }
 
-//    @ModelAttribute("searchBean")
-//    public SearchBean initializeBean(){
-//        return new SearchBean();
-//    }
+    public SearchService getSearchService() {
+        return searchService;
+    }
+
+    public void setSearchService(SearchService searchService) {
+        this.searchService = searchService;
+    }
+
+    //initialisation liste des 5 derniers livres dans la requete
+    @ModelAttribute("List5lasts")
+    public List<BookBean> setList5LastBooks() {
+        List<BookBean> listeLivres;
+        try {
+            listeLivres = searchService.findLastFiveUploaded();
+        }catch(NoDataFoundException e){
+            listeLivres = new ArrayList<BookBean>();
+        }
+        return listeLivres;
+    }
+
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String connexion(@Valid LoginBean loginbean,
             BindingResult result, HttpSession session, ModelMap model) {
