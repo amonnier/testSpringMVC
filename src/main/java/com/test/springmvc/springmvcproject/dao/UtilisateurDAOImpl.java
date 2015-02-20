@@ -96,4 +96,20 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
         }
     }
 
+    @Override
+    public UtilisateurBean getById(Integer id) throws NoDataFoundException {
+        final UtilisateurBean utilisateur;
+        final String sql = "select * from utilisateur where id=?";
+        
+        try{
+            utilisateur = template.queryForObject(sql, new Object[]{id}, new UtilisateurMapper());
+        }catch(EmptyResultDataAccessException e){
+            throw new NoDataFoundException("Aucun utilisateur trouvé.");
+        }
+        
+        return utilisateur;
+    }
+    
+    
+
 }

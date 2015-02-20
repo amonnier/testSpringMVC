@@ -31,6 +31,7 @@ public class BookMapper implements RowMapper<BookBoBean>{
         uploader.setEmail(rs.getString("email"));
         uploader.setPassword(rs.getString("password"));
         uploader.setUsertag(rs.getString("usertag"));
+        uploader.setId(rs.getInt("id_uploader"));
         
         bean.setUploader(uploader);
         

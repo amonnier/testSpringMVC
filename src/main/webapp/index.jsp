@@ -37,6 +37,9 @@
     </c:if>
     <c:if test="${not empty utilisateur}">
         <h4> <spring:message code="accueil.accueil.bienvenue.message"/> ${utilisateur.usertag} !</h4>
+        <a href="<c:url value="/user/${utilisateur.id}/show.do"/>">
+            <spring:message code="accueil.utilisateur.voir.profil"/>
+        </a>
     </c:if>
 </div>
 <div>

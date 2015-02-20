@@ -26,6 +26,7 @@ public class SearchHelper {
         bean.setEmplacementCouverture(bobean.getEmplacementCouverture());
         bean.setIdentifiant(bobean.getId());
         bean.setNomLivre(bobean.getNomFichier());
+        bean.setUploader(bobean.getUploader());
         
         return bean;
     }

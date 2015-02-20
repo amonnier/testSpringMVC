@@ -28,4 +28,6 @@ public interface UtilisateurService {
     public UtilisateurBean get(final String email, final String password);
 
     public UtilisateurBean get(final LoginBean login) throws NoDataFoundException;
+    
+    public UtilisateurBean getById(final Integer id) throws NoDataFoundException;
 }

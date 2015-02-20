@@ -6,6 +6,7 @@
 package com.test.springmvc.springmvcproject;
 
 import com.test.springmvc.springmvcproject.dv.beans.BookBean;
+import com.test.springmvc.springmvcproject.dv.beans.CommentaireBean;
 import com.test.springmvc.springmvcproject.exceptions.NoDataFoundException;
 import com.test.springmvc.springmvcproject.services.SearchService;
 import java.io.File;
@@ -45,8 +46,13 @@ public class BookDetailsController {
     }
 
     @ModelAttribute("bookModel")
-    public BookBean initializeModels() {
+    public BookBean initializeBookModels() {
         return new BookBean();
+    }
+    
+    @ModelAttribute("commentaireBean")
+    public CommentaireBean initializeCommentaireModels(){
+        return new CommentaireBean();
     }
 
     @RequestMapping(value = "/{bookId}/show", method = RequestMethod.GET)

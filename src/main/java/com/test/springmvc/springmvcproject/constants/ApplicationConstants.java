@@ -12,4 +12,5 @@ package com.test.springmvc.springmvcproject.constants;
 public class ApplicationConstants {
     public static final String TYPE_PDF = "application/pdf";
     public static final String TYPE_EPUB = "application/epub+zip";
+    public static final Integer IDENTIFIANT_ANNONYME =2;
 }

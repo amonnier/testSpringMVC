@@ -25,4 +25,6 @@ public interface BookDAO {
     
     public List<BookBoBean> getLastFiveUploadedBooks() throws NoDataFoundException;
     
+    public List<BookBoBean> getByUserId(final Integer Id) throws NoDataFoundException;
+    
 }

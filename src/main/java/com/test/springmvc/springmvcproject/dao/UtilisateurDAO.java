@@ -26,4 +26,6 @@ public interface UtilisateurDAO {
     public UtilisateurBean get(final String email) throws NoDataFoundException;
 
     public UtilisateurBean get(final UtilisateurBean utilisateur) throws NoDataFoundException;
+    
+    public UtilisateurBean getById(final Integer id) throws NoDataFoundException;
 }

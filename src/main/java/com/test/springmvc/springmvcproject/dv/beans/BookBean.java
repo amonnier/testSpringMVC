@@ -5,7 +5,9 @@
  */
 package com.test.springmvc.springmvcproject.dv.beans;
 
+import com.test.springmvc.springmvcproject.bo.bean.UtilisateurBean;
 import com.test.springmvc.springmvcproject.constants.ApplicationConstants;
+import java.util.List;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -32,7 +34,10 @@ public class BookBean {
     private String emplacementCouverture;
     private Integer identifiant;
     private String nomLivre;
-
+    private UtilisateurBean uploader;
+    private Float note;
+    private List<CommentaireBean> commentaires;
+    
     public String getAuteur() {
         return auteur;
     }
@@ -105,6 +110,30 @@ public class BookBean {
         this.nomLivre = nomLivre;
     }
 
+    public UtilisateurBean getUploader() {
+        return uploader;
+    }
+
+    public void setUploader(UtilisateurBean uploader) {
+        this.uploader = uploader;
+    }
+
+    public Float getNote() {
+        return note;
+    }
+
+    public void setNote(Float note) {
+        this.note = note;
+    }
+
+    public List<CommentaireBean> getCommentaires() {
+        return commentaires;
+    }
+
+    public void setCommentaires(List<CommentaireBean> commentaires) {
+        this.commentaires = commentaires;
+    }
+    
     @AssertTrue(message = "Fichier chargé invalide.")
     public boolean hasFileUploaded() {
         if (this.fichier.isEmpty()) {

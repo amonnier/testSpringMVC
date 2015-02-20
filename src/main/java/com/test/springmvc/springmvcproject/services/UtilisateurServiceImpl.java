@@ -5,13 +5,18 @@
  */
 package com.test.springmvc.springmvcproject.services;
 
+import com.test.springmvc.springmvcproject.bo.bean.BookBoBean;
 import com.test.springmvc.springmvcproject.dv.beans.RegisterBean;
 import com.test.springmvc.springmvcproject.bo.bean.UtilisateurBean;
+import com.test.springmvc.springmvcproject.dao.BookDAO;
 import com.test.springmvc.springmvcproject.dao.UtilisateurDAO;
+import com.test.springmvc.springmvcproject.dv.beans.BookBean;
 import com.test.springmvc.springmvcproject.dv.beans.LoginBean;
 import com.test.springmvc.springmvcproject.exceptions.DuplicatedEntryException;
 import com.test.springmvc.springmvcproject.exceptions.NoDataFoundException;
 import com.test.springmvc.springmvcproject.helpers.RegisterHelper;
+import com.test.springmvc.springmvcproject.helpers.SearchHelper;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -24,6 +29,10 @@ public class UtilisateurServiceImpl implements UtilisateurService{
 
     @Autowired
     private UtilisateurDAO utilisateurDao;
+    
+    @Autowired
+    private BookDAO bookDAO;
+   
     
     @Override
     public void create(Integer id, String email, String password) {
@@ -78,5 +87,21 @@ public class UtilisateurServiceImpl implements UtilisateurService{
             throw e;
         }
     }    
+
+    @Override
+    public UtilisateurBean getById(final Integer id) throws NoDataFoundException {
+        final UtilisateurBean bean;
+        final List<BookBean> livresUploades;
+        
+        //recup utilisateur
+        bean = utilisateurDao.getById(id);
+        //recup livres uploades par l'utilisateur
+        final List<BookBoBean> livresBoLivres = bookDAO.getByUserId(bean.getId());
+        livresUploades = SearchHelper.mapListBookBoBeanToBookBean(livresBoLivres);
+        
+        bean.setListeLivres(livresUploades);
+        
+        return bean;
+    }
     
 }

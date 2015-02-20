@@ -53,6 +53,7 @@ public class BookDAOImpl extends JdbcDaoSupport implements BookDAO {
                 + "livre.*, "
                 + "utilisateur.usertag, "
                 + "utilisateur.email, "
+                + "utilisateur.id AS id_uploader, "
                 + "utilisateur.password "
                 + "from livre "
                 + "join utilisateur "
@@ -76,35 +77,65 @@ public class BookDAOImpl extends JdbcDaoSupport implements BookDAO {
     }
 
     @Override
-    public BookBoBean getById(Integer id) throws NoDataFoundException{
+    public BookBoBean getById(Integer id) throws NoDataFoundException {
         final String sql = "select livre.*, "
                 + "utilisateur.usertag, "
                 + "utilisateur.email, "
-                + "utilisateur.password "
+                + "utilisateur.password, "
+                + "utilisateur.id as id_uploader "
                 + "from livre "
                 + "join utilisateur "
                 + "on utilisateur.id = livre.uploader "
                 + "where livre.id = ?";
 
         final BookBoBean bobean;
-        try{
+        try {
             bobean = getJdbcTemplate().queryForObject(sql, new Object[]{id}, new BookMapper());
-        }catch(EmptyResultDataAccessException e){
+        } catch (EmptyResultDataAccessException e) {
             throw new NoDataFoundException("Pas de données trouvées");
         }
-        
+
         return bobean;
     }
-    
+
     @Override
-    public List<BookBoBean> getLastFiveUploadedBooks() throws NoDataFoundException{
+    public List<BookBoBean> getLastFiveUploadedBooks() throws NoDataFoundException {
         List<BookBoBean> listeLivres = new ArrayList<BookBoBean>();
-        final String sql = "select * from livre,utilisateur where utilisateur.id = livre.uploader order by id desc limit 5";
-        try{
+        final String sql = "select livre.*, "
+                + "utilisateur.usertag, "
+                + "utilisateur.email, "
+                + "utilisateur.password, "
+                + "utilisateur.id as id_uploader "
+                + "from livre "
+                + "join utilisateur "
+                + "on utilisateur.id = livre.uploader "
+                + " order by id desc limit 5";
+        try {
             listeLivres = getJdbcTemplate().query(sql, new BookMapper());
-        }catch(EmptyResultDataAccessException e){
+        } catch (EmptyResultDataAccessException e) {
             throw new NoDataFoundException("erreurs.aucun.livre");
         }
+        return listeLivres;
+    }
+
+    @Override
+    public List<BookBoBean> getByUserId(Integer Id) throws NoDataFoundException {
+        final List<BookBoBean> listeLivres;
+        final String sql = "select livre.*, "
+                + "utilisateur.usertag, "
+                + "utilisateur.email, "
+                + "utilisateur.password, "
+                + "utilisateur.id as id_uploader "
+                + "from livre "
+                + "join utilisateur "
+                + "on utilisateur.id = livre.uploader "
+                + " where livre.uploader=?";
+        try {
+            listeLivres = getJdbcTemplate().query(sql, new Object[]{Id}, new BookMapper());
+        } catch (EmptyResultDataAccessException e) {
+            throw new NoDataFoundException("erreurs.aucun.livre");
+        }
+
         return listeLivres;
     }
 

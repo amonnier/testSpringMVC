@@ -5,6 +5,8 @@
  */
 package com.test.springmvc.springmvcproject.bo.bean;
 
+import java.util.List;
+
 /**
  *
  * @author guillaume
@@ -19,6 +21,8 @@ public class BookBoBean {
     private String emplacementCouverture;
     private UtilisateurBean uploader;
     private String nomFichier;
+    private Float note;
+    private List<CommentaireBoBean> commentaire;
 
     public Integer getId() {
         return id;
@@ -84,4 +88,20 @@ public class BookBoBean {
         this.nomFichier = nomFichier;
     }
 
+    public Float getNote() {
+        return note;
+    }
+
+    public void setNote(Float note) {
+        this.note = note;
+    }
+
+    public List<CommentaireBoBean> getCommentaire() {
+        return commentaire;
+    }
+
+    public void setCommentaire(List<CommentaireBoBean> commentaire) {
+        this.commentaire = commentaire;
+    }
+    
 }

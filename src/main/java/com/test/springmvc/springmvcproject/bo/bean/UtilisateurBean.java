@@ -5,18 +5,21 @@
  */
 package com.test.springmvc.springmvcproject.bo.bean;
 
+import com.test.springmvc.springmvcproject.dv.beans.BookBean;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *
  * @author guillaume
  */
-public class UtilisateurBean implements Serializable{
+public class UtilisateurBean implements Serializable {
 
     private Integer id;
     private String usertag;
     private String email;
     private String password;
+    private List<BookBean> listeLivres;
 
     public UtilisateurBean() {
 
@@ -60,4 +63,11 @@ public class UtilisateurBean implements Serializable{
         this.password = password;
     }
 
+    public List<BookBean> getListeLivres() {
+        return listeLivres;
+    }
+
+    public void setListeLivres(List<BookBean> listeLivres) {
+        this.listeLivres = listeLivres;
+    }
 }
