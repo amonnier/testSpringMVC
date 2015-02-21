@@ -22,7 +22,7 @@
     </tr>
     <tr>
         <td><spring:message code="book.details.description"/></td>
-        <td>${bookModel.auteur}</td>
+        <td>${bookModel.description}</td>
     </tr>
     <tr>
         <td><spring:message code="book.details.uploade.by"/></td>

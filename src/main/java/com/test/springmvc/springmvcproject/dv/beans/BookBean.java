@@ -10,6 +10,7 @@ import com.test.springmvc.springmvcproject.constants.ApplicationConstants;
 import java.util.List;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,6 +25,7 @@ public class BookBean {
     private String auteur;
     @NotNull
     @NotEmpty
+    @Pattern(regexp = "[a-zA-Z]+\\s*[a-zA-Z0-9]*",message = "ded")
     private String titre;
     @NotNull
     @NotEmpty
@@ -143,8 +145,14 @@ public class BookBean {
                 || this.getFichier().getContentType().equals(ApplicationConstants.TYPE_PDF))) {
             return false;
         }
+        if(!this.couverture.isEmpty()){
+            if(!(this.couverture.getContentType().equals("image/jpeg") || 
+                    this.couverture.getContentType().equals("image/png")))
+            {
+                return false;
+            }
+        }
         System.out.println("type de fichier : " + fichier.getContentType());
         return true;
     }
-
 }
