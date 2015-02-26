@@ -16,4 +16,5 @@ import java.util.List;
 public interface CommentDAO {
     
     public List<CommentaireBoBean> getByBookId(final Integer id) throws NoDataFoundException;
+    public void save(final CommentaireBoBean bean);
 }

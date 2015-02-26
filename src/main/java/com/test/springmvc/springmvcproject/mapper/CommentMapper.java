@@ -22,6 +22,7 @@ public class CommentMapper implements RowMapper<CommentaireBoBean>{
     public CommentaireBoBean mapRow(ResultSet rs, int i) throws SQLException {
         final CommentaireBoBean commentaire = new CommentaireBoBean();
         commentaire.setCommentaire(rs.getString("commentaire"));
+        commentaire.setDate_commentaire(rs.getTimestamp("date_commentaire"));
         
         final UtilisateurBean utilisateur = new UtilisateurBean();
         utilisateur.setId(rs.getInt("user_id"));

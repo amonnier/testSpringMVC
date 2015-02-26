@@ -27,6 +27,7 @@ public class SearchHelper {
         bean.setIdentifiant(bobean.getId());
         bean.setNomLivre(bobean.getNomFichier());
         bean.setUploader(bobean.getUploader());
+        bean.setCommentaires(CommentHelper.mapListCommentaireBoBeanToCommentaireBean(bobean.getCommentaire()));
         
         return bean;
     }

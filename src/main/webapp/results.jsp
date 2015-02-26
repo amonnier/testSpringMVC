@@ -13,13 +13,14 @@
 
     <h2 class="text-center">Résultats</h2>
     <div class="table-responsive">
-        
-    <table data-link="row" class="table table-hover"><tr><td>Nom</td><td>Auteur</td></tr>
-        <c:forEach items="${searchBean.resultat}" var="resultat">
-            <tr onclick="window.document.location='${pageContext.request.contextPath}/book/${resultat.identifiant}/show.do';"> <td>${resultat.titre}</td>
-        <td>${resultat.auteur}</td></tr>
-                </c:forEach>
-    </table>
+
+        <table data-link="row" class="table table-hover"><tr><td>Nom</td><td>Auteur</td></tr>
+            <c:forEach items="${searchBean.resultat}" var="resultat">
+                <tr onclick="window.document.location = '${pageContext.request.contextPath}/book/${resultat.identifiant}/show.do';"> <td>${resultat.titre}</td>
+                    <td>${resultat.auteur}</td>
+                </tr>
+            </c:forEach>
+        </table>
     </div>
 
 </c:if>

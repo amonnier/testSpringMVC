@@ -5,6 +5,8 @@
  */
 package com.test.springmvc.springmvcproject.bo.bean;
 
+import java.util.Date;
+
 /**
  *
  * @author guillaume
@@ -14,6 +16,7 @@ public class CommentaireBoBean {
     private UtilisateurBean utilisateur;
     private BookBoBean livre;
     private String commentaire;
+    private Date date_commentaire;
 
     public String getCommentaire() {
         return commentaire;
@@ -38,7 +41,13 @@ public class CommentaireBoBean {
     public void setLivre(BookBoBean livre) {
         this.livre = livre;
     }
-    
-    
+
+    public Date getDate_commentaire() {
+        return date_commentaire;
+    }
+
+    public void setDate_commentaire(Date date_commentaire) {
+        this.date_commentaire = date_commentaire;
+    }
     
 }

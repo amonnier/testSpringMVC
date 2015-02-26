@@ -6,6 +6,8 @@
 package com.test.springmvc.springmvcproject.dv.beans;
 
 import com.test.springmvc.springmvcproject.bo.bean.UtilisateurBean;
+import java.util.Date;
+import org.hibernate.validator.constraints.Length;
 
 /**
  *
@@ -15,7 +17,9 @@ public class CommentaireBean {
 
     private UtilisateurBean utilisateur;
     private BookBean livre;
+    @Length(max = 1000)
     private String commentaire;
+    private Date date_commentaire;
 
     public UtilisateurBean getUtilisateur() {
         return utilisateur;
@@ -40,7 +44,13 @@ public class CommentaireBean {
     public void setCommentaire(String commentaire) {
         this.commentaire = commentaire;
     }
-    
-    
+
+    public Date getDate_commentaire() {
+        return date_commentaire;
+    }
+
+    public void setDate_commentaire(Date date_commentaire) {
+        this.date_commentaire = date_commentaire;
+    }
     
 }
