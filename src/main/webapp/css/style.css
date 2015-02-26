@@ -1,0 +1,14 @@
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+
+    width:"460" ;
+    height:"345";
+    margin: auto;
+}
+
+.active item, .item{
+    cursor:  pointer;
+}
+.cursor{
+    cursor: pointer;
+}

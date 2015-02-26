@@ -25,7 +25,7 @@ public class BookBean {
     private String auteur;
     @NotNull
     @NotEmpty
-    @Pattern(regexp = "[a-zA-Z]+\\s*[a-zA-Z0-9]*",message = "ded")
+//    s@Pattern(regexp = "[a-zA-Z]+[a-zA-Z]*\\s*[a-zA-Z0-9]*",message = "ded")
     private String titre;
     @NotNull
     @NotEmpty
