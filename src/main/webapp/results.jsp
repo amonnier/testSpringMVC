@@ -12,17 +12,17 @@
 <script type="text/javascript" language="javascript" src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" language="javascript" src="//cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.js"></script>
 
-<script src="js/jquery-1.11.1.min.js"></script>
-<script type="text/javascript" src="js/jquery.dataTables.min<js"></script>
-<script type="text/javascript" src="js/dataTables.sbootstrap.js"></script>
-<jsp:include page="header.jsp" />
+<script src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/dataTables.bootstrap.js"></script>
+<jsp:include page="/header.jsp" />
 
 
 
 <script type="text/javascript" class="init">
     $(document).ready(function () {
         $('#example').dataTable();
-
+    });
 </script>
 
 

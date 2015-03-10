@@ -7,8 +7,10 @@ package com.test.springmvc.springmvcproject.dv.beans;
 
 import javax.validation.constraints.AssertTrue;
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 /**
  *
@@ -21,6 +23,7 @@ public class RegisterBean {
     @Email
     private String email;
     @NotEmpty
+    @Length(min = 3, max = 15)
     private String password;
     @NotEmpty
     private String passwordConfirmation;
@@ -59,8 +62,12 @@ public class RegisterBean {
         this.password = password;
     }
 
-    @AssertTrue(message = "Le mot de passe et sa confirmation sont différents")
+    @AssertTrue()
     private boolean isValid() {
-        return this.password.equals(this.passwordConfirmation);
+        if (null != this.password && !StringUtils.isEmpty(this.password)) {
+            return this.password.equals(this.passwordConfirmation);
+        } else {
+            return true;
+        }
     }
 }

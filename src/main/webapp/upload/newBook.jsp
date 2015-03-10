@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <jsp:include page="/header.jsp" />
 
-<h2>Nouveau livre : </h2>
+<h2><spring:message code="upload.livre.nouveau"/></h2>
 <form:form action="${pageContext.request.contextPath}/upload.do" 
            commandName="bookBean" cssClass="pure-form pure-form-stacked" method="POST" 
            enctype="multipart/form-data"  class="form-horizontal">
@@ -21,25 +21,25 @@
     </div>
     <div class="form-group">
 
-        <label>Titre du livre :<form:input path="titre" class="form-control" />     </label>
+        <label><spring:message code="upload.livre.titre"/><form:input path="titre" class="form-control" />     </label>
                 
     </div>
     <div class="form-group">
-        <label>Auteur du livre : <form:input class="form-control" path="auteur"/></label>
+        <label><spring:message code="upload.livre.auteur"/><form:input class="form-control" path="auteur"/></label>
     </div>
     <div class="form-group">
-        <label>Description : <form:textarea class="form-control" path="description"/></label>
+        <label><spring:message code="upload.livre.description"/><form:textarea class="form-control" path="description"/></label>
     </div>
     <div class="form-group">
-        <label>Couverture : <input type="file" name="couverture" id="couverture"/></label>
-        <p class="help-block">Couverture du livre au format jpeg ou png.</p>
+        <label><spring:message code="upload.livre.couverture"/><input type="file" name="couverture" id="couverture"/></label>
+        <p class="help-block"><spring:message code="upload.livre.couverture.hint"/></p>
     </div>
     <div class="form-group">
-        <label>Emplacement : <input type="file" name="fichier" id="fichier"/></label>
-        <p class="help-block">Fichier au format pdf ou epub.</p>
+        <label><spring:message code="upload.livre.fichier"/><input type="file" name="fichier" id="fichier"/></label>
+        <p class="help-block"><spring:message code="upload.livre.fichier.hint"/></p>
     </div>
     <div class="form-group">
-        <input type="submit" value="Enregistrer" class="btn btn-default"/>
+        <input type="submit" value="<spring:message code="upload.livre.submit"/>" class="btn btn-default"/>
     </div>
 </form:form>
 

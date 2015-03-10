@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
@@ -72,10 +73,10 @@ public class CommentController {
         return "redirect:/book/" + bookId + "/show.do";
     }
 
-    @RequestMapping(value = "/ajax/{bookId}/add", method = RequestMethod.POST)
-    public ModelMap addCommentAjax(@PathVariable Integer bookId, @RequestParam String commentaireContent,
-            @ModelAttribute("commentaireBean") CommentaireBean commentaire,HttpSession session
-            ,HttpServletRequest request, ModelMap model) {
+    @RequestMapping(value = "/ajax/{bookId}/add")
+    public @ResponseBody
+    BookBean addCommentAjax(@PathVariable Integer bookId, @RequestParam String commentaireContent,
+            @ModelAttribute("commentaireBean") CommentaireBean commentaire, HttpSession session, HttpServletRequest request, ModelMap model) {
         commentaire.setCommentaire(commentaireContent);
         //on ajoute l'utilisateur
         final UtilisateurBean utilisateur = (UtilisateurBean) session.getAttribute("utilisateur");
@@ -94,8 +95,17 @@ public class CommentController {
         } catch (NoDataFoundException e) {
         }
         commentaireService.save(commentaire);
-        model.addAttribute("bookModel", new BookBean());
-        return model;
+
+        //on recupère le nouveau livre avec les commentaires : 
+        BookBean updatedLivre;
+        try {
+            updatedLivre = searchService.findById(bookId);
+        } catch (NoDataFoundException e) {
+            updatedLivre = new BookBean();
+        }
+
+        //on le renvoie
+        return updatedLivre;
     }
 
 }

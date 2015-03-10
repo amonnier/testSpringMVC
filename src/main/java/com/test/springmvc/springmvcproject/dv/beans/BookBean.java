@@ -21,14 +21,13 @@ import org.springframework.web.multipart.MultipartFile;
 public class BookBean {
 
     @NotNull
-    @NotEmpty
+    @Pattern(regexp = "[a-zA-Z0-9]+[\\s*[a-zA-Z0-9]*]*")
     private String auteur;
     @NotNull
-    @NotEmpty
-//    s@Pattern(regexp = "[a-zA-Z]+[a-zA-Z]*\\s*[a-zA-Z0-9]*",message = "ded")
+    @Pattern(regexp = "[a-zA-Z0-9]+[\\s*[a-zA-Z0-9]*]*")
     private String titre;
     @NotNull
-    @NotEmpty
+    @Pattern(regexp = "[a-zA-Z0-9]+[\\s*[a-zA-Z0-9]*]*")
     private String description;
     private MultipartFile fichier;
     private MultipartFile couverture;

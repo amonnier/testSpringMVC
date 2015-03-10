@@ -10,10 +10,14 @@
         <link rel='stylesheet' href='${pageContext.request.contextPath}/webjars/bootstrap/3.3.2/css/bootstrap-theme.min.css'>
         <script type="text/javascript" src="${pageContext.request.contextPath}/webjars/jquery/2.1.3/jquery.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/webjars/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-        <link rel=stylesheet title="style" href="css/style.css" >
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/nprogress.js"></script>
+        <link rel=stylesheet title="style" href="${pageContext.request.contextPath}/css/style.css" >
+        <link rel=stylesheet title="style" href="${pageContext.request.contextPath}/css/nprogress.css" >
+        <link rel=stylesheet title="style" href="${pageContext.request.contextPath}/css/bootstrap-editable.css" >
+        <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap-editable.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Accueil</title>
-     
+
     </head>
     <body>
         <nav class="navbar navbar-default">
@@ -42,8 +46,8 @@
 
 
                         </li>
-                        
-                        
+
+
                     </ul> 
                 </div>
             </div>

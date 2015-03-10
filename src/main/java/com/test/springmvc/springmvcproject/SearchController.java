@@ -56,4 +56,9 @@ public class SearchController {
         }
         return "results";
     }
+    
+    @RequestMapping(value = "/json",method = RequestMethod.GET)
+    public String getJSONPage(ModelMap map){
+        return "testJSON";
+    }
 }

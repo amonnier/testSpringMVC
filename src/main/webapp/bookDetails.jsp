@@ -9,30 +9,61 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<jsp:include page="header.jsp" />
+<jsp:include page="/header.jsp" />
+<!--<script type="text/javascript" src="${pageContext.request.contextPath}/js/bookDetails.js"></script>-->
 <script type="text/javascript">
-    function ajaxComment() {
-        var contenu = $('#content_commentaire').val();
-//        $.post("${pageContext.request.contextPath}/comment/ajax/${bookModel.identifiant}/add.do",
-//                {commentaireContent: contenu},
-//        {
-//            complete: function (jqXHR) {
-//                alert("ok");
-//                $("#commentaires").html(jqXHR.responseText);
-//            }
-//        });
+    function ListCommentaires(comments, contextRoot) {
+        this.liste = comments;
+        this.contextRoot = contextRoot;
+        this.toString = function (contextRoot) {
+            var html = "";
+            html += '<div class="commentaires">';
+            for (commentaire of this.liste){
+                var date = new Date(commentaire.date_commentaire);
+                html += '<div class="commentaire">';
+                html += '<spring:message code="book.details.commentaire.list.par"/> '
+                        + '<a href="' + this.contextRoot + '/user/' + commentaire.utilisateur.id + '/show.do">'
+                        + commentaire.utilisateur.usertag
+                        + '</a>';
+                html += '<spring:message code="book.details.commentaire.list.le"/>' + date.toLocaleFormat('%d %b %Y');
+                html += '<spring:message code="book.details.commentaire.list.a"/>' + date.toLocaleFormat('%Hh%M');
+                html += '<spring:message code="book.details.commentaire.list.separateur"/>';
+                html += '<br/>' + commentaire.commentaire;
+                html += '</div>';
+            }
+            html += '</div>';
+            return html;
+        };
+    }
+    function Book(titre, auteur, commentaires, contextRoot) {
+        this.titre = titre;
+        this.auteur = auteur;
+        this.contextRoot = contextRoot;
+        this.listCommentaires = new ListCommentaires(commentaires, contextRoot);
+        this.toString = function () {
+            var string = "";
+            string += this.listCommentaires.toString();
+            return string;
+        };
+    }
 
+    function saveAndReload(contextRoot, bookId) {
+        NProgress.start();
+        var contenu = $('#content_commentaire').val();
+        NProgress.inc();
         $.ajax({
-            type: 'POST',
-            data: {'commentaireContent': contenu},
-            url: '${pageContext.request.contextPath}/comment/ajax/${bookModel.identifiant}/add.do',
-            success: function (jqXHR) {
-                alert("ok");
-                $("#commentaires").html(jqXHR.responseText);
+            url: '' + contextRoot + '/comment/ajax/' + bookId + '/add.do',
+            data: {commentaireContent: contenu},
+            success: function (data) {
+                var book = new Book(data.titre, data.auteur, data.commentaires, contextRoot);
+                $("#content_commentaire").val("");
+                $('#commentaires').hide().html(book.toString()).fadeIn('fast');
+                NProgress.done();
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log(textStatus + "," + errorThrown + "," + jqXHR.responseText); //error logging
             }
+
         });
     }
 </script>
@@ -82,14 +113,14 @@
                        path="commentaire"
                        placeholder="${empty utilisateur ? messageNotConnected:messageConnected}" 
                        maxlength="1000"/>
-        <!--<input type="button" value="Enregistrer" onclick="javascript:ajaxComment();" />-->
-        <input ${empty utilisateur? 'disabled':''} type="submit" value="<spring:message code="book.details.commentaire.new.submit"/>"/>
+        <input type="button" value="Enregistrer" onclick="javascript:saveAndReload('${pageContext.request.contextPath}', '${bookModel.identifiant}');" />
     </form:form>
 </table>
 <div id="commentaires">
     <table>
         <c:forEach items="${bookModel.commentaires}" var="commentaire">
-            <tr><td><spring:message code="book.details.commentaire.list.par"/>${commentaire.utilisateur.usertag}
+            <tr><td><spring:message code="book.details.commentaire.list.par"/>
+                    <a href="${pageContext.request.contextPath}/user/${commentaire.utilisateur.id}/show.do">${commentaire.utilisateur.usertag}</a>
                     <spring:message code="book.details.commentaire.list.le"/><fmt:formatDate type="date" value="${commentaire.date_commentaire}" pattern="dd-MM-yyyy" dateStyle="long"/>
                     <spring:message code="book.details.commentaire.list.a"/> <fmt:formatDate type="time" timeStyle="short" pattern="hh:mm" value="${commentaire.date_commentaire}"/> 
                     <spring:message code="book.details.commentaire.list.separateur"/><br/>${commentaire.commentaire}</td></tr>
